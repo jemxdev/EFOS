@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scan_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:textColor="#212121"/>
+
+    <!-- Placeholder frame for the selected image / bounding box simulation -->
+    <ImageView
+        android:id="@+id/iv_scan_preview"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_phomopsis"
+        android:background="#E0E0E0"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="Scanned Leaf Preview"/>
+
+    <!-- Loading Spinner (Hidden by default) -->
+    <ProgressBar
+        android:id="@+id/progress_bar_inference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_inference_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#757575"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Gallery Button -->
+    <Button
+        android:id="@+id/btn_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/scan_gallery"
+        android:backgroundTint="#2E7D32"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Camera Button -->
+    <Button
+        android:id="@+id/btn_camera"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="@string/scan_camera"
+        android:textColor="#2E7D32"/>
+
+</LinearLayout>

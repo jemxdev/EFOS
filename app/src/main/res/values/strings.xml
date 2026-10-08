@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">EFOS</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_history">History</string>
+    <string name="nav_scan">SCAN</string>
+    <string name="nav_defects">Defects</string>
+    <string name="nav_settings">Settings</string>
+    <string name="placeholder_home">Home Screen</string>
+    <string name="screen_history">History Screen</string>
+    <string name="screen_scan">SCAN Camera</string>
+    <string name="screen_defects">Defects Library</string>
+    <string name="screen_settings">Settings</string>
+    <string name="title_settings">Settings</string>
+    <string name="setting_dark_mode">Dark Mode</string>
+    <string name="setting_dev_mode">Developer Mode (Show AI Confidence)</string>
+    <string name="setting_clear_history">Clear Scan History</string>
+    <string name="setting_about">About EFOS</string>
+    <string name="scan_title">AI Leaf Disease Scanner</string>
+    <string name="scan_gallery">Upload from Gallery</string>
+    <string name="scan_camera">Capture with Camera</string>
+    <string name="status_running_ai">Running AI Detection &amp; Bounding Boxes…</string>
+</resources>
