@@ -1,5 +1,7 @@
 package com.example.efos
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -28,31 +29,31 @@ class SettingsFragment : Fragment() {
         val btnClearHistory = view.findViewById<Button>(R.id.btn_clear_history)
         val btnAbout = view.findViewById<Button>(R.id.btn_about)
 
-        // Check current night mode state so the switch shows the correct position
-        val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
-        switchDarkMode.isChecked = isDarkMode
+        val sharedPrefs = requireActivity().getSharedPreferences("EFOS_PREFS", Context.MODE_PRIVATE)
 
-        // Dark Mode Logic
+        // 1. Correctly detect if the screen is CURRENTLY in dark mode
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        switchDarkMode.isChecked = (currentNightMode == Configuration.UI_MODE_NIGHT_YES)
+
         switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+            val newMode = if (isChecked) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+
+            // Save the manual override
+            sharedPrefs.edit().putInt("DARK_MODE", newMode).apply()
+
+            // Apply theme instantly
+            AppCompatDelegate.setDefaultNightMode(newMode)
         }
 
-        // Developer Mode Logic
         switchDevMode.setOnCheckedChangeListener { _, isChecked ->
             val status = if (isChecked) "Enabled" else "Disabled"
             Toast.makeText(requireContext(), "Developer Mode $status", Toast.LENGTH_SHORT).show()
         }
 
-        // Clear History Button Logic
         btnClearHistory.setOnClickListener {
             Toast.makeText(requireContext(), "SQLite Scan History Cleared!", Toast.LENGTH_SHORT).show()
         }
 
-        // About Button Logic
         btnAbout.setOnClickListener {
             Toast.makeText(requireContext(), "EFOS v1.0 - La Union Research Project", Toast.LENGTH_LONG).show()
         }

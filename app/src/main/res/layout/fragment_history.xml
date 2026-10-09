@@ -40,12 +40,10 @@
             android:textColor="#FFFFFF"/> <!-- Excel Green Color -->
     </LinearLayout>
 
-    <!-- ListView to display past scans -->
-    <ListView
-        android:id="@+id/list_view_history"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_history"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.efos
 
 import android.graphics.Bitmap
+import androidx.core.graphics.scale // Add this import
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -23,7 +24,9 @@ object HistoryManager {
         val aspectRatio = imageBitmap.width.toFloat() / imageBitmap.height.toFloat()
         val thumbWidth = 300
         val thumbHeight = (thumbWidth / aspectRatio).toInt()
-        val thumbnail = Bitmap.createScaledBitmap(imageBitmap, thumbWidth, thumbHeight, true)
+
+        // KTX extension applied here
+        val thumbnail = imageBitmap.scale(thumbWidth, thumbHeight, true)
 
         // Add the new scan to the very top of the list (index 0)
         scanHistory.add(0, HistoryItem(disease, currentDate, severityStr, imageBitmap = thumbnail))

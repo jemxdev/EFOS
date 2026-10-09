@@ -19,4 +19,14 @@
     <string name="scan_gallery">Upload from Gallery</string>
     <string name="scan_camera">Capture with Camera</string>
     <string name="status_running_ai">Running AI Detection &amp; Bounding Boxes…</string>
+    <string name="scan_leaf">Scan Leaf</string>
+    <string name="sort_newest">Sort: Newest</string>
+    <string name="sort_oldest">Sort: Oldest</string>
+    <string name="total_scans_format">• Total Scans Stored: %1$d</string>
+    <string name="latest_detection_format">• Latest Detection: %1$s</string>
+    <string name="none_yet">None yet</string>
+    <string name="nav_title_home">Home</string>
+    <string name="nav_title_history">History</string>
+    <string name="nav_title_defects">Defects</string>
+    <string name="nav_title_settings">Settings</string>
 </resources>

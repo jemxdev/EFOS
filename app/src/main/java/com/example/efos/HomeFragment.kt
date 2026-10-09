@@ -25,33 +25,30 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnScan = view.findViewById<Button>(R.id.btn_home_scan)
-
         tvTotalScans = view.findViewById(R.id.tv_home_total_scans)
         tvLatestScan = view.findViewById(R.id.tv_home_latest_scan)
 
-        // Navigate to Scan Tab by triggering the new Floating Action Button
         btnScan.setOnClickListener {
             val fabScan = requireActivity().findViewById<FloatingActionButton>(R.id.fab_scan)
             fabScan.performClick()
         }
     }
 
-    // onResume is called every time this screen becomes visible.
-    // This makes sure our statistics update instantly if we just saved a new scan!
     override fun onResume() {
         super.onResume()
         updateDashboardStats()
     }
 
     private fun updateDashboardStats() {
-        // Read directly from our live HistoryManager memory bank
-        val totalScans = HistoryManager.scanHistory.size
+        // --- NEW: Pull real stats from SQLite ---
+        val dbHelper = DatabaseHelper(requireContext())
+        val totalScans = dbHelper.getScanCount()
 
-        // Get the very first item in the list (the newest one), or say "None yet" if empty
-        val latestDisease = HistoryManager.scanHistory.firstOrNull()?.disease ?: "None yet"
+        // getAllScans returns them newest first, so index 0 is the most recent
+        val allScans = dbHelper.getAllScans()
+        val latestDisease = allScans.firstOrNull()?.disease ?: getString(R.string.none_yet)
 
-        // Update the text on the screen
-        tvTotalScans.text = "• Total Scans Stored: $totalScans"
-        tvLatestScan.text = "• Latest Detection: $latestDisease"
+        tvTotalScans.text = totalScans.toString()
+        tvLatestScan.text = latestDisease
     }
 }
